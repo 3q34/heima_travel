@@ -95,13 +95,25 @@
                             var p = '<p>经营商家 ：' + data2.sname + '</p>' +
                                 '<p>咨询电话 : ' + data2.consphone + '</p>' +
                                 '<p>地址 ：' + data2.address + '</p>';
-
-
                             $("#pros_other").html(p);
                         });
-                }
-            );
 
+                    //是否收藏isFavorite
+                    $.get(
+                        "route/isFavorite",
+                        {rid: rid},
+                        function (data3) {
+                            var favor = '';
+                            if (data3) {
+                                favor += '<a class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>取消收藏</a>';
+
+                            } else {
+                                favor += '<a class="btn" href="javascript:favorite()"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>';
+                            }
+                            favor += '<span > 已收藏' + data.count + '次 </span>'
+                            $("#collect").html(favor);
+                        });
+                });
         });
     </script>
     <script>
@@ -141,11 +153,8 @@
             </div>
             <div class="pros_price">
                 <p class="price"><strong>¥2699.00</strong><span>起</span></p>
-                <p class="collect">
-                    <a class="btn" href="javascript:favorite()"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                <p class="collect" id="collect">
 
-                    <a class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
-                    <span>已收藏100次</span>
                 </p>
             </div>
         </div>

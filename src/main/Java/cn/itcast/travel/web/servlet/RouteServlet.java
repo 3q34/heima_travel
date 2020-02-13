@@ -119,7 +119,10 @@ public class RouteServlet extends BaseServlet {
      */
     public void addFavorite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1. 获取线路rid
-        String rid = request.getParameter("rid");
+        String rid1 = request.getParameter("rid");
+        int rid = 0;
+        if (null != rid1 && rid1.length() > 0 && !"null".equals(rid1))
+            rid = Integer.parseInt(rid1);
         //2. 获取当前登录的用户
         User user = (User) request.getSession().getAttribute("user");
         int uid;//用户id
@@ -133,7 +136,7 @@ public class RouteServlet extends BaseServlet {
 
 
         //3. 调用service添加
-        //favoriteService.add(rid, uid);
+        favoriteService.add(rid, uid);
 
     }
 
