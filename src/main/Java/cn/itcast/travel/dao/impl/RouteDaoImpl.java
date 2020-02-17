@@ -52,25 +52,16 @@ public class RouteDaoImpl implements RouteDao {
         return pageBean;
     }
 
-    @Override
-    public List<RouteImg> getRouteImgsByRid(int rid) {
-        String sql = "select * from tab_route_img where rid=?";
-        List<RouteImg> routeImgs = template.query(sql, new BeanPropertyRowMapper<>(RouteImg.class), rid);
-        return routeImgs;
-    }
+
 
     @Override
     public Route getOneRouteByRid(int rid) {
         String sql = "select * from tab_route where rid=?";
         Route route = template.queryForObject(sql, new BeanPropertyRowMapper<>(Route.class), rid);
-        route.setRouteImgList(getRouteImgsByRid(rid));
+//        route.setRouteImgList(getRouteImgsByRid(rid));//图片list
+//        route.setSeller(getSeller(route.getSid()));//seller对象
         return route;
     }
 
-    @Override
-    public Seller getSeller(int sid) {
-        String sql = "select * from tab_seller where sid=?";
-        Seller seller = template.queryForObject(sql, new BeanPropertyRowMapper<>(Seller.class), sid);
-        return seller;
-    }
+
 }

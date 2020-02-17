@@ -16,15 +16,15 @@ public class FavoriteDaoImpl implements FavoriteDao {
 
     @Override
     public boolean isFavorite(int rid, int uid) {
-        String sql = "select * from tab_favorite where rid=? and uid=?";
+        String sql = "select count(rid) from tab_favorite where rid=? and uid=?";
         Integer count = template.queryForObject(sql, Integer.class, rid, uid);
         return count > 0;
     }
 
     @Override
     public void add(int rid, int uid) {
-        String sql = "";
-        Date date=new Date();
-        int i = template.update(sql, rid, uid, date);
+        String sql = "insert into tab_favorite values(?,?,?)";
+        Date date = new Date();
+        template.update(sql, rid, date, uid);
     }
 }

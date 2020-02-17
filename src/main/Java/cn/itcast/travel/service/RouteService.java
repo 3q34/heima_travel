@@ -2,7 +2,7 @@ package cn.itcast.travel.service;
 
 import cn.itcast.travel.domain.PageBean;
 import cn.itcast.travel.domain.Route;
-import cn.itcast.travel.domain.Seller;
+
 
 
 
@@ -16,5 +16,5 @@ public interface RouteService {
 
     Route getOneRouteByRid(int rid);
 
-    Seller getSeller(int sid);
+
 }

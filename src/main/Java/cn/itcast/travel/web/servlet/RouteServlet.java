@@ -92,7 +92,7 @@ public class RouteServlet extends BaseServlet {
         if (null != rid1 && rid1.length() > 0 && !"null".equals(rid1))
             rid = Integer.parseInt(rid1);
         //2. 获取当前登录的用户 user
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("userInfo");
         int uid;//用户id
         if (user == null) {
             //用户尚未登录
@@ -124,7 +124,7 @@ public class RouteServlet extends BaseServlet {
         if (null != rid1 && rid1.length() > 0 && !"null".equals(rid1))
             rid = Integer.parseInt(rid1);
         //2. 获取当前登录的用户
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("userInfo");
         int uid;//用户id
         if (user == null) {
             //用户尚未登录
@@ -137,17 +137,6 @@ public class RouteServlet extends BaseServlet {
 
         //3. 调用service添加
         favoriteService.add(rid, uid);
-
-    }
-
-    public void getSeller(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //1. 获取线路rid
-        String sid1 = request.getParameter("sid");
-        int sid = 0;
-        if (null != sid1 && sid1.length() > 0 && !"null".equals(sid1))
-            sid = Integer.parseInt(sid1);
-        Seller sellor = service.getSeller(sid);
-        writeValue(response, sellor);
 
     }
 
